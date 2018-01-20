@@ -1,6 +1,15 @@
 
+body{
+/*  background: url("../images/psychic.jpg"); */
+  color: #000;
+}
+
 h1
 {
   color: #4aaaa5;
   background-color: #ffffff;
+}
+
+#box
+{
 }

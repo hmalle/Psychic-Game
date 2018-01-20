@@ -32,42 +32,48 @@ function appendGuesses( guessed, pressedKey)
 /*------update the screen ---------*/
 function updateVariables()
 {
-  var html ="<p>Guess what letter I'm thinkig of</p>"+
+  var html ="<p>Guess what letter I'm thinking of</p>"+
             "<p>Wins          : "+wins +"</p>"+
             "<p>Losses        : "+ losses +"</p>"+
             "<p>Guesses Left  : "+ guessesLeft +"</p>"+
             "<p>Guessed So Far: "+ guessed +"</p>" ;     
   document.getElementById("box").innerHTML = html; 
 }
-/* main loop of the game */
-document.getElementById("box").innerHTML = "Press any key to Start";
-al = guessRandomAlphabet();
-document.onkeyup = function(event)
+
+function playGame()
 {
-  var pressedKey = event.key;
-  if(valid(pressedKey))
+  /* main loop of the game */
+  al = guessRandomAlphabet();
+  updateVariables();
+  document.onkeyup = function(event)
   {
-    appendGuesses( guessed, pressedKey);
-    if(pressedKey === al)
+    var pressedKey = event.key;
+    if(valid(pressedKey))
     {
-      wins++;
-      guessesLeft = 9;
-      guessed = [];
+      appendGuesses( guessed, pressedKey);
+      if(pressedKey === al)
+      {
+        wins++;
+        guessesLeft = 9;
+        guessed = [];
+      }
+      else
+      {
+        guessesLeft--;
+      }
+      if(guessesLeft===0)
+      {
+        losses++;
+        guessesLeft = 9;
+        guessed = [];
+      }
+      updateVariables();
     }
     else
     {
-      guessesLeft--;
+      document.getElementById("box").innerHTML = "Please enter an alphabet guess";
     }
-    if(guessesLeft===0)
-    {
-      losses++;
-      guessesLeft = 9;
-      guessed = [];
-    }
-    updateVariables();
-  }
-  else
-  {
-    document.getElementById("box").innerHTML = "Please enter an alphabet guess";
   }
 }
+
+playGame();
