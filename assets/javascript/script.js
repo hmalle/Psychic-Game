@@ -11,12 +11,14 @@ function guessRandomAlphabet()
   var index =Math.floor(Math.random()*alphabet.length);
   return alphabet[index];
 }
+
 /*-----regex to check if a character is in a to z---*/
 function valid(character)
 {
   /* returns a null is its not an aphabet */
   return ( character.match(/[a-z]/i));
 }
+
 /*--------append to the guessList------*/
 function appendGuesses( guessed, pressedKey)
 {
@@ -29,6 +31,7 @@ function appendGuesses( guessed, pressedKey)
   }
   guessed.push(pressedKey);
 }
+
 /*------update the screen ---------*/
 function updateVariables()
 {
@@ -77,3 +80,4 @@ function playGame()
 }
 
 playGame();
+
